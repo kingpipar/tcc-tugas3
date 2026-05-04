@@ -1,39 +1,23 @@
-# API Testing
-GET http://localhost:3000/ HTTP/1.1
+### Melihat Semua Catatan
+GET http://localhost:3000/api/notes
 
-###
-# GET : All Users
-GET http://localhost:3000/api/v1/users HTTP/1.1
-Content-Type: application/json
-
-###
-# GET : User by ID
-GET http://localhost:3000/api/v1/users/3 HTTP/1.1
-Content-Type: application/json
-
-###
-# POST : Create User
-POST http://localhost:3000/api/v1/users HTTP/1.1
+### Menambah Catatan Baru
+POST http://localhost:3000/api/notes
 Content-Type: application/json
 
 {
-  "username": "John Doe3",
-  "email": "johndoe2docker@example.com"
+    "judul": "Ngetest API.rest",
+    "isi": "King Emyu menang coy"
 }
 
-###
-# PUT : Update User
-PUT http://localhost:3000/api/v1/users/3 HTTP/1.1
+### Mengedit Catatan (Ganti angka 1 dengan ID catatan yang ada)
+PUT http://localhost:3000/api/notes/4
 Content-Type: application/json
 
 {
-  "username": "John Doe Updated",
-  "email": "johndoeupdated@example.com"
+    "judul": "Ngetest edit",
+    "isi": "King Emyu Ngalahin Liverpool"
 }
 
-###
-# DELETE : Delete User
-DELETE http://localhost:3000/api/v1/users/5 HTTP/1.1
-Content-Type: application/json
-
-
+### Menghapus Catatan (Ganti angka 1 dengan ID catatan)
+DELETE http://localhost:3000/api/notes/5

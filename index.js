@@ -17,20 +17,20 @@ app.use(express.static('public'));
 
 app.use('/api', noteRoutes);
 
-const startServer = async () => {
+// Nyalakan server DULU supaya Cloud Run senang karena port terbuka
+app.listen(PORT, async () => {
+    console.log(`Server is running on port ${PORT}`);
+    
+    // Baru setelah itu coba koneksi database
     try {
         await db.authenticate();
         console.log('Database Connected...');
-        
-        // .sync() otomatis membuat tabel di DB jika belum ada
-        await NoteSchema.sync(); 
-        
-        app.listen(PORT, () => {
-            console.log(`Server up and running on http://localhost:${PORT}`);
-        });
+        await NoteSchema.sync();
+        console.log('Database Synchronized...');
     } catch (error) {
-        console.error('Connection error:', error);
+        console.error('DATABASE ERROR:', error.message);
+        // Server tetap nyala walaupun DB error, jadi kamu bisa baca log-nya dengan tenang
     }
-}
+});
 
-startServer();
+// startServer();

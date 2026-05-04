@@ -2,7 +2,7 @@ const Note = require('../schema/Note.js');
 
 const getAllNotes = async (req, res) => {
     try {
-        const notes = await NoteModel.getNotes();
+        const notes = await Note.getNotes();
         res.json(notes);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -11,7 +11,7 @@ const getAllNotes = async (req, res) => {
 
 const createNewNote = async (req, res) => {
     try {
-        const newNote = await NoteModel.createNote(req.body);
+        const newNote = await Note.createNote(req.body);
         res.status(201).json(newNote);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -20,7 +20,7 @@ const createNewNote = async (req, res) => {
 
 const updateExistingNote = async (req, res) => {
     try {
-        await NoteModel.updateNote(req.params.id, req.body);
+        await Note.updateNote(req.params.id, req.body);
         res.json({ message: "Catatan berhasil diupdate" });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -29,7 +29,7 @@ const updateExistingNote = async (req, res) => {
 
 const deleteExistingNote = async (req, res) => {
     try {
-        await NoteModel.deleteNote(req.params.id);
+        await Note.deleteNote(req.params.id);
         res.json({ message: "Catatan berhasil dihapus" });
     } catch (error) {
         res.status(500).json({ message: error.message });

@@ -1,4 +1,4 @@
-const NoteModel = require('../models/noteModels.js');
+const Note = require('../schema/Note.js');
 
 const getAllNotes = async (req, res) => {
     try {
